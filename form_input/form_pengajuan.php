@@ -60,7 +60,7 @@ $kode_surat = $_GET['kode_surat'];
         <div class="form-group">
           <label for="keperluan" style="margin-bottom: 5px;">Keperluan</label>
           <div class="input-group" style="margin-bottom: 5px;">
-            <textarea class="form-control" id="keperluan" name="keperluan" rows="3" required></textarea>
+            <textarea class="form-control" id="keperluan" name="keperluan" rows="3" required autofocus></textarea>
           </div>
 
           <br>

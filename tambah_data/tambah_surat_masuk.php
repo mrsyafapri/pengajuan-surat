@@ -27,9 +27,13 @@ if (in_array($ekstention, ['doc', 'docx', 'pdf']) and $size <= 10000000 and $err
             $_SESSION["pesan"] = "gagal";
             echo "Gagal";
         }
+    } else {
+        header("Location: ../admin/surat_masuk.php");
+        $_SESSION["pesan"] = "gagal";
+        echo "Gagal";
     }
 } else {
     header("Location: ../admin/surat_masuk.php");
     $_SESSION["pesan"] = "gagal";
-    echo "Gagal1";
+    echo "Gagal";
 }

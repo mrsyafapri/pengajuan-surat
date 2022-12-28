@@ -3,9 +3,7 @@ include "../connect/koneksi.php";
 include "../proses_login/session_login.php";
 $username = $_SESSION["username"];
 $user = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM user where username='$username'"));
-$nama = $user["nama_lengkap"];
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +27,7 @@ $nama = $user["nama_lengkap"];
     if (isset($_SESSION["pesan"])) {
         if ($_SESSION["pesan"] == "sukses") { ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>BERHASIL!!</strong> Checkin Berhasil
+                <strong>BERHASIL!!</strong> Surat Berhasil Dimasukkan
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -37,7 +35,7 @@ $nama = $user["nama_lengkap"];
         <?php unset($_SESSION["pesan"]);
         } elseif ($_SESSION["pesan"] == "gagal") { ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>GAGAL!!!</strong> Checkin Gagal
+                <strong>GAGAL!!</strong> Surat Gagal Dimasukkan
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

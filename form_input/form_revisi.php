@@ -41,7 +41,7 @@
                 <div class="form-group">
                     <label for="" style="margin-bottom: 5px;">Keterangan Revisi</label>
                     <div class="input-group" style="margin-bottom: 5px;">
-                        <textarea class="form-control" name="keperluan" rows="3" required></textarea>
+                        <textarea class="form-control" name="keperluan" rows="3" required autofocus></textarea>
                     </div>
                 </div>
                 <input type="hidden" name="id_pengajuan" value="<?= $_GET['id_pengajuan'] ?>">

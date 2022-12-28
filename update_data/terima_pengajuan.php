@@ -10,9 +10,9 @@ $data = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT COUNT(arsip_surat.nomo
 $nomor = (string)$data["nomor"] + 1;
 
 if (strlen($nomor) == 1) {
-    $nomor_surat = '0' . $nomor . '/' . $kode_surat . '/' . 'SMAN15Pekanbaru' . '/' . $bulan . '/' . $tahun;
+    $nomor_surat = '0' . $nomor . '/' . $kode_surat . '/' . 'SMAN.15' . '/' . $bulan . '/' . $tahun;
 } else {
-    $nomor_surat = $nomor . '/' . $kode_surat . '/' . 'SMAN15Pekanbaru' . '/' . $bulan . '/' . $tahun;
+    $nomor_surat = $nomor . '/' . $kode_surat . '/' . 'SMAN.15' . '/' . $bulan . '/' . $tahun;
 }
 
 $data_pengajuan = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT pengajuan.jenis_pengajuan from pengajuan where pengajuan.id_pengajuan = $id_pengajuan"));

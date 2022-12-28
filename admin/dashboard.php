@@ -80,8 +80,11 @@ $nama = $user["nama_lengkap"];
     ?>
     <!-- Awal Isi Konten -->
     <div class="container-fluid">
-        <!-- Halaman kepala -->
-        <h1 class="h3 mb-2 text-gray-800">Dashboard</h1>
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <a href="cetak_laporan.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Cetak Laporan</a>
+        </div>
         <!-- Grafik -->
         <?php
         $surat_ska = mysqli_query($koneksi, "SELECT kode_surat FROM pengajuan WHERE kode_surat = 'SKA' ");

@@ -53,6 +53,7 @@ $user = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM user where user
             <div class="card-header">
                 <div class="d-sm-flex align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Daftar Laporan Pengajuan</h6>
+                    <a href="cetak_laporan.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Cetak Laporan</a>
                 </div>
             </div>
             <div class="card-body">
