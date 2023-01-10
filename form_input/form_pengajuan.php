@@ -3,7 +3,11 @@ include "../connect/koneksi.php";
 include "../proses_login/session_login.php";
 $username = $_SESSION["username"];
 $user = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM user where username='$username'"));
-$kode_surat = $_GET['kode_surat'];
+if (isset($_GET['nisn'])) {
+  $nisn = $_GET['nisn'];
+  $nama_siswa = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT nama FROM siswa WHERE nisn = '$nisn'"));
+  $nama = $nama_siswa['nama'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -43,20 +47,22 @@ $kode_surat = $_GET['kode_surat'];
   <?php include "../templates/navbar.php" ?>
   <div class="fix">
     <div class="container" style="margin-top: 40px; margin-bottom: 50px;">
-      <h4 class="text-center">Form Pengajuan Surat
-        <?php if ($kode_surat == 'SKA') {
-          echo "Keterangan Aktif";
-        } elseif ($kode_surat == 'SKBB') {
-          echo "Keterangan Berkelakuan Baik";
-        } elseif ($kode_surat == 'SKL') {
-          echo "Keterangan Lulus";
-        } elseif ($kode_surat == 'SL') {
-          echo "Keterangan Lainnya";
-        }
-        ?>
-      </h4>
+      <h4 class="text-center">Form Pengajuan Surat Aktif</h4>
       <hr>
-      <form action="../tambah_pengajuan/pengajuan_surat.php?kode_surat=<?= $kode_surat; ?>" method="POST">
+      <!-- Check NISN of students then fill the other field -->
+      <form method="get">
+        <div class="form-group">
+          <label for="nisn" style="margin-bottom: 5px;">NISN</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text " style="height: 38px;"><i class="fas fa-address-card"></i></div>
+            </div>
+            <input type="number" id="nisn" name="nisn" class="form-control" placeholder="Masukan NISN" style="margin-bottom: 5px;" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Cek NISN</button>
+        </div>
+      </form>
+      <form action="../tambah_pengajuan/pengajuan_surat.php?kode_surat=SKA" method="POST">
         <div class="form-group">
           <label for="keperluan" style="margin-bottom: 5px;">Keperluan</label>
           <div class="input-group" style="margin-bottom: 5px;">
@@ -65,13 +71,6 @@ $kode_surat = $_GET['kode_surat'];
 
           <br>
           <h3>Data Siswa</h3>
-          <label for="nisn" style="margin-bottom: 5px;">NISN</label>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text " style="height: 38px;"><i class="fas fa-address-card"></i></div>
-            </div>
-            <input type="number" id="nisn" name="nisn" class="form-control" placeholder="Masukan NISN" style="margin-bottom: 5px;" required>
-          </div>
 
           <label for="nis" style="margin-bottom: 5px;">NIS</label>
           <div class="input-group">
@@ -86,7 +85,9 @@ $kode_surat = $_GET['kode_surat'];
             <div class="input-group-prepend">
               <div class="input-group-text " style="height: 38px;"><i class="fas fa-user"></i></div>
             </div>
-            <input type="text" id="nama" name="nama" class="form-control" value="<?= $user["nama_lengkap"]; ?>" placeholder="Masukan Nama" style="margin-bottom: 5px;" required>
+            <input type="text" id="nama" name="nama" class="form-control" value="<?php if (isset($_GET["nisn"])) {
+                                                                                    echo $nama;
+                                                                                  } ?>" placeholder="Masukan Nama" style="margin-bottom: 5px;" required>
           </div>
 
           <label for="tempat_lahir" style="margin-bottom: 5px;">Tempat Lahir</label>
